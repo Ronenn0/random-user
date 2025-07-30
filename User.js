@@ -140,6 +140,9 @@ export class User {
         for (let i = users.length - amount; i < users.length; i++) {
             html += users[i].getHTML();
         }
+        console.log(usersContainer.innerHTML.length);
+        console.log(html.length);
+
         usersContainer.insertAdjacentHTML('beforeend', html); //apend instead of overwrite
     }
 

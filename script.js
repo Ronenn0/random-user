@@ -214,7 +214,7 @@ async function loadInfinit() {
 
     setTimeout(async () => {
         await loadInfinit();
-    }, 1000);
+    }, 800);
 }
 
 /**
