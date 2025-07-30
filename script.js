@@ -36,6 +36,7 @@ function handleEventListeners() {
         e.preventDefault();
         if (loadingUsers) return;
 
+        handleAmountInput(true);
         const usersAmount = usersAmountInput.value;
         loadingUsers = true;
 
