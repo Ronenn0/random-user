@@ -6,6 +6,13 @@
     --main-background: #fbfbfb;
     --user-background: #f5f5f5;
     --load-user-color: white;
+    --filters-color: white;
+
+    --font-x-large: 2.3rem;
+    --font-big: 1.8rem;
+    --font-medium: 1.4rem;
+    --font-small: 1.1rem;
+    --font-x-small: 0.9rem;
 }
 
 * {
@@ -13,7 +20,7 @@
     padding: 0;
     box-sizing: border-box;
     color: var(--primary-color-1);
-    font-size: 0.9rem;
+    font-size: var(--font-x-small);
     font-family: monospace;
 }
 
@@ -29,6 +36,7 @@ html.dark-mode {
     --main-background: #1b1b1b;
     --user-background: #131313;
     --load-user-color: rgb(221, 221, 221);
+    --filters-color: black;
 }
 
 body {
@@ -52,7 +60,7 @@ main {
 }
 
 main>header>h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-x-large);
 }
 
 main form {
@@ -71,7 +79,7 @@ main form #users-amount {
     border: none;
     text-align: center;
     box-shadow: 0 0 10px #16a08452;
-    font-size: 1.3rem;
+    font-size: var(--font-medium);
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0);
 }
@@ -81,7 +89,7 @@ main form #users-amount:focus {
 }
 
 main form #load-users {
-    font-size: 1.5rem;
+    font-size: var(--font-medium);
     width: 50%;
     padding: 10px 0;
     border-radius: 20px;
@@ -100,6 +108,47 @@ main form #load-users:hover {
 main form #load-users:active {
     transform: translateY(0px);
     box-shadow: 0 0 10px #16a08472;
+}
+
+main form .filters {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+main form .filters input[type="button"] {
+    background: none;
+    color: var(--primary-color-1);
+    border: none;
+    padding: 3px 7px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.15s;
+
+    &:hover,
+    &.picked {}
+}
+
+main form .filters input[type="button"]:hover,
+main form.no-filter input.no-filter,
+main form.filter-by-gender input.gender-filter {
+    background-color: var(--primary-color-1);
+    color: var(--filters-color);
+    transform: translateY(-2px);
+}
+
+select#genders {
+    padding: 3px 10px;
+    font-size: var(--font-small);
+    outline: none;
+    background-color: var(--main-background);
+    border: 1px solid var(--primary-color-2);
+    display: none;
+}
+
+main form.filter-by-gender select#genders {
+    display: block;
 }
 
 button.download-as-json {
@@ -125,7 +174,7 @@ button.download-as-json {
 
     & i {
         color: var(--primary-color-2);
-        font-size: 2rem;
+        font-size: var(--font-big);
         transition: color 0.1s, scale 0.15s;
     }
 
@@ -187,10 +236,6 @@ button.download-as-json {
 }
 
 .user .user-info {
-    --font-big: 1.8rem;
-    --font-medium: 1.4rem;
-    --font-small: 1.1rem;
-
     padding: 0 20px 20px 20px;
     display: flex;
     flex-direction: column;
@@ -251,14 +296,6 @@ button.download-as-json {
 
 
 @media (max-width: 650px) {
-    main>header>h1 {
-        font-size: 1.5rem;
-    }
-
-    main form #load-users {
-        font-size: 1.1rem;
-    }
-
     main {
         padding: 5px 0px;
     }
@@ -275,10 +312,12 @@ button.download-as-json {
         grid-template-columns: repeat(auto-fit, 70vw);
     }
 
-    .user .user-info {
-        --font-big: 1.5rem;
-        --font-medium: 1.2rem;
+    :root {
+        --font-x-large: 1.8rem;
+        --font-big: 1.6rem;
+        --font-medium: 1.3rem;
         --font-small: 0.8rem;
+        --font-x-small: 0.8rem;
     }
 }
 

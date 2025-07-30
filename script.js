@@ -30,6 +30,7 @@ function handleEventListeners() {
     }
 
     let loadingUsers;
+    let genderFilter;
     const resultSentence = document.querySelector('.result-sentence');
     form.onsubmit = async e => {
 
@@ -37,13 +38,24 @@ function handleEventListeners() {
         if (loadingUsers) return;
 
         handleAmountInput(true);
+
+        let gender;
+        if (genderFilter) {
+            const gendersSelectInput = document.getElementById('genders');
+
+            if (gendersSelectInput.value.length > 0) {
+                gender = gendersSelectInput.value;
+            } else {
+                return alert('Pick a gender!');
+            }
+        }
         const usersAmount = usersAmountInput.value;
         loadingUsers = true;
 
         const s = usersAmount > 1 ? 's' : '';
         resultSentence.textContent = `Loading ${usersAmount} User${s}...`;
 
-        await User.getRandomUsers(usersAmount);
+        await User.getRandomUsers(usersAmount, gender);
         User.displayUsersOnContainer();
 
         resultSentence.textContent = `Loaded ${usersAmount} User${s}`;
@@ -76,19 +88,58 @@ function handleEventListeners() {
         downloadAsJson();
     });
 
+    /**
+     * 
+     * @param {HTMLElement} element 
+     * @param {string} className 
+     * Adds a class to the element's class list.
+     */
+    function addClass(element, className) {
+        if (!element.classList.contains(className)) {
+            element.classList.add(className);
+        }
+    }
+
+    /**
+     * 
+     * @param {HTMLElement} element 
+     * @param {string} className 
+     * Removes a class from the element's class list.
+     */
+    function removeClass(element, className) {
+        if (element.classList.contains(className)) {
+            element.classList.remove(className);
+        }
+    }
+
 
     //Dark-mode toggling
     const moon = document.querySelector('.moon');
     const sun = document.querySelector('.sun');
     moon.addEventListener('click', () => {
         document.documentElement.className = 'dark-mode';
-        moon.classList.add('hidden');
-        sun.classList.remove('hidden');
+        addClass(moon, 'hidden');
+        removeClass(sun, 'hidden');
     });
     sun.addEventListener('click', () => {
         document.documentElement.className = '';
-        sun.classList.add('hidden');
-        moon.classList.remove('hidden');
+        addClass(sun, 'hidden');
+        removeClass(moon, 'hidden');
+    });
+
+    //filter by gender button
+    const filterByGender = document.querySelector('.gender-filter');
+    const noFilter = document.querySelector('input.no-filter');
+
+    noFilter.addEventListener('click', () => {
+        form.className = 'no-filter';
+        genderFilter = false;
+    });
+
+    filterByGender.addEventListener('click', () => {
+        form.className = 'filter-by-gender';
+        genderFilter = true;
     });
 }
+
 
