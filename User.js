@@ -96,10 +96,12 @@ export class User {
      * 
      * @param {number} amount 
      */
-    static async getRandomUsers(amount, gender) {
+    static async getRandomUsers(amount, gender, reset = true) {
         const response = await fetch(`https://randomuser.me/api/?results=${amount}${gender ? `&gender=${gender}` : ''}`);
         const usersResult = (await response.json()).results;
-        users.length = 0; // empty users
+        if (reset) {
+            users.length = 0; // empty users
+        }
         usersResult.forEach(user => {
             users.push(new User({
                 id: user.id?.value || 'Not found',

@@ -26,6 +26,7 @@
 
 html {
     background: var(--gradient-color);
+    scroll-behavior: smooth;
 }
 
 html.dark-mode {
@@ -44,6 +45,7 @@ body {
     justify-content: center;
     align-items: flex-start;
     margin: 20px;
+    position: relative;
 }
 
 main {
@@ -59,8 +61,27 @@ main {
     position: relative;
 }
 
+main>header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+main.inf form,
+main.inf .result-sentence {
+    display: none;
+}
+
 main>header>h1 {
     font-size: var(--font-x-large);
+    text-align: center;
+}
+
+main>header>.load-states {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 main form {
@@ -117,7 +138,8 @@ main form .filters {
     align-items: center;
 }
 
-main form .filters input[type="button"] {
+main form .filters input[type="button"],
+main>header>.load-states input {
     background: none;
     color: var(--primary-color-1);
     border: none;
@@ -125,17 +147,28 @@ main form .filters input[type="button"] {
     border-radius: 2px;
     cursor: pointer;
     transition: all 0.15s;
-
-    &:hover,
-    &.picked {}
 }
 
 main form .filters input[type="button"]:hover,
 main form.no-filter input.no-filter,
-main form.filter-by-gender input.gender-filter {
+main form.filter-by-gender input.gender-filter,
+main.inf>header input.infinit,
+main.man>header input.manualy,
+main>header input:hover {
     background-color: var(--primary-color-1);
     color: var(--filters-color);
     transform: translateY(-2px);
+}
+
+main form .filters input[type="button"]:hover,
+main>header input:hover {
+    opacity: 0.7;
+}
+
+main form .filters input[type="button"]:active,
+main>header input:active {
+    opacity: 0.7;
+    scale: 1.1;
 }
 
 select#genders {
@@ -151,10 +184,16 @@ main form.filter-by-gender select#genders {
     display: block;
 }
 
+
 button.download-as-json {
+
+    --size: 50px;
     position: absolute;
-    left: 10px;
-    top: 57px;
+    left: 5px;
+    top: 20px;
+    z-index: 3;
+    height: 0;
+
     background: none;
     border: none;
     cursor: pointer;
@@ -322,18 +361,39 @@ button.download-as-json {
 }
 
 .dark-mode-svgs {
-    position: absolute;
-    right: 10px;
-    top: 45px;
+    --size: 50px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 500;
 }
 
-.dark-mode-svgs svg {
+.top {
     width: 50px;
     height: 50px;
+    color: var(--primary-color-2);
+    background-color: var(--filters-color);
+    border-radius: 50%;
+    padding: 10px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    transition: scale 0.15s;
+    z-index: 50;
+}
+
+.top:hover {
+    scale: 1.1;
+}
+
+
+.dark-mode-svgs svg {
+    width: var(--size);
+    height: var(--size);
     cursor: pointer;
     transition: scale 0.15s, background-color 0.15s;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(211, 211, 211, 0.884);
     border-radius: 50%;
 
     &.hidden {
@@ -342,7 +402,7 @@ button.download-as-json {
 
     &:hover {
         scale: 1.1;
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(199, 199, 199, 0.952);
     }
 
     &:active {
@@ -352,20 +412,25 @@ button.download-as-json {
 
 .moon {
     stroke: none;
-    fill: rgb(75, 74, 74);
+    fill: rgb(71, 69, 69);
 }
 
-.sun {
-    stroke: rgb(209, 209, 12);
+.dark-mode-svgs svg.sun {
+    stroke: rgb(240, 240, 40);
+    background-color: rgba(0, 0, 0, 0.562);
 }
 
 
 
 @media (max-width: 500px) {
+
     /* button.download-as-json {
         left: 3px;
         top: 55px;
     } */
+    main {
+        padding-top: 50px;
+    }
 
     .users-container {
         grid-template-columns: repeat(auto-fit, 1fr);
@@ -376,5 +441,17 @@ button.download-as-json {
         justify-content: center;
         align-items: center;
         gap: 0px;
+    }
+}
+
+@media (max-width: 350px) {
+
+    main>header>.load-states,
+    .filters {
+        flex-direction: column;
+    }
+
+    main form input#load-users {
+        font-size: var(--font-small);
     }
 }

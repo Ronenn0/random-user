@@ -4,6 +4,9 @@ export let users = [];
 
 const form = document.querySelector('main form');
 
+let infinitLoading = true;
+
+
 handleEventListeners();
 form.requestSubmit();
 
@@ -152,6 +155,39 @@ function handleEventListeners() {
         form.className = 'filter-by-gender';
         genderFilter = true;
     });
+
+    //manualy or infinit load
+    const main = document.querySelector('main');
+    const infinitButton = document.querySelector('input.infinit');
+    const manualyButton = document.querySelector('input.manualy');
+    infinitButton.addEventListener('click', () => {
+        if (infinitLoading) return;
+        main.className = 'inf';
+        infinitLoading = true;
+        users.length = 0;
+        User.displayUsersOnContainer();
+        loadInfinit();
+    });
+    manualyButton.addEventListener('click', () => {
+        main.className = 'man';
+        infinitLoading = false;
+        users.length = 0;
+        form.requestSubmit();
+    });
+}
+async function loadInfinit() {
+    if (!infinitLoading) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 1000) {
+        await User.getRandomUsers(10, null, false);
+        User.displayUsersOnContainer();
+    }
+
+    setTimeout(async () => {
+        await loadInfinit()
+    }, 100);
 }
 
+loadInfinit();
 
