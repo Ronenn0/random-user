@@ -33,7 +33,7 @@ main {
     align-items: center;
     border-radius: 15px;
     gap: 20px;
-    max-width: 1800px;
+    max-width: 2000px;
 }
 
 main>header>h1 {
@@ -75,9 +75,6 @@ main form #load-users {
     cursor: pointer;
     transition: transform 0.15s;
 
-    &.animate {
-        animation: animateButton 2s ease-in forwards;
-    }
 }
 
 main form #load-users:hover {
@@ -87,22 +84,6 @@ main form #load-users:hover {
 main form #load-users:active {
     transform: translateY(0px);
     box-shadow: 0 0 10px #16a08472;
-}
-
-@keyframes animateButton {
-
-    0%,
-    30% {
-        transform: rotate(0);
-    }
-
-    50% {
-        transform: rotate(90deg);
-    }
-
-    100% {
-        transform: rotate(90deg) translateX(100%);
-    }
 }
 
 .users-container {
@@ -229,7 +210,6 @@ main form #load-users:active {
     }
 }
 
-
 @media (max-width: 500px) {
     .users-container {
         grid-template-columns: repeat(auto-fit, 1fr);
@@ -241,5 +221,4 @@ main form #load-users:active {
         align-items: center;
         gap: 0px;
     }
-
 }

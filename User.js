@@ -122,7 +122,6 @@ export class User {
      */
     static displayUsersOnContainer() {
         const usersContainer = document.querySelector('.users-container');
-        // console.log(users);
         const html = users.reduce((HTML, user) => HTML + user.getHTML(), '');
         usersContainer.innerHTML = html;
     }
