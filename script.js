@@ -15,7 +15,11 @@ function handleEventListeners() {
     //Users Amount input Element
     const usersAmountInput = document.getElementById('users-amount');
 
-    //Makes sure the inputted user amount is between the min and max.
+    /**
+     * 
+     * @param {*} checkMin -> true -> checks the minimum value, false - doesn't check
+     * The function Makes sure the inputted user amount is between the min and max.
+     */
     function handleAmountInput(checkMin) {
         const value = Number(usersAmountInput.value);
         const min = Number(usersAmountInput.min);
@@ -32,6 +36,14 @@ function handleEventListeners() {
     let loadingUsers;
     let genderFilter;
     const resultSentence = document.querySelector('.result-sentence');
+
+    /**
+     * 
+     * @param {*} e -> event
+     * Function that fires when the form is submitted
+     * It checks all data, alerts if anything is wrong.
+     * Gets users and displays them.
+     */
     form.onsubmit = async e => {
 
         e.preventDefault();
