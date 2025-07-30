@@ -2,8 +2,7 @@
 
 A modern JavaScript web app that fetches and displays random user profiles using the [RandomUser API](https://randomuser.me/). Supports infinite scroll, manual loading, dark mode, filters, and data export.
 
-![Preview](./e21f9c9a-32ad-4414-83d6-52318ba60c79.png)
-
+![Preview](https://github.com/user-attachments/assets/564937ec-0193-4568-8966-036b0a47a4e2)
 ---
 
 ## 🌟 Features
@@ -56,7 +55,8 @@ https://randomuser.me/api/?results=10
 
 ## 📸 Screenshots
 
-![App Screenshot](./e21f9c9a-32ad-4414-83d6-52318ba60c79.png)
+![App Screenshot](https://github.com/user-attachments/assets/9aea6714-f94d-4bb4-8cf5-e3baa5a2ac53)
+![App Screenshot](https://github.com/user-attachments/assets/4217842b-8e14-4829-a7ba-e20505888f4a)
 
 ---
 
