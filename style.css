@@ -33,6 +33,7 @@ main {
     align-items: center;
     border-radius: 15px;
     gap: 20px;
+    max-width: 1800px;
 }
 
 main>header>h1 {
@@ -106,10 +107,10 @@ main form #load-users:active {
 
 .users-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 400px);
+    grid-template-columns: repeat(auto-fit, 450px);
     flex-direction: column;
     justify-content: center;
-    gap: 15px;
+    gap: 30px;
     width: 100%;
 }
 
@@ -147,11 +148,14 @@ main form #load-users:active {
 }
 
 .user .user-image-container img.user-image {
-    width: 150px;
-    transform: translateY(-10px);
+    width: var(--image-size);
 }
 
 .user .user-info {
+    --font-big: 1.8rem;
+    --font-medium: 1.4rem;
+    --font-small: 1.1rem;
+
     padding: 0 20px 20px 20px;
     display: flex;
     flex-direction: column;
@@ -161,9 +165,10 @@ main form #load-users:active {
 }
 
 .user .user-info span {
-    font-size: 1.1rem;
+    font-size: var(--font-small);
     font-weight: bold;
     color: var(--primary-color-2);
+    white-space: nowrap;
 }
 
 .user .user-info span.label {
@@ -176,28 +181,37 @@ main form #load-users:active {
 
     & .name {
         color: var(--primary-color-2);
-        font-size: 2rem;
+        font-size: var(--font-big);
     }
 
     & .country {
         opacity: 0.8;
-        font-size: 1.8rem;
+        font-size: var(--font-medium);
     }
 }
 
-.user-info .age-gender-container {
+.user-info .middle-container {
     display: flex;
     justify-content: space-evenly;
     gap: 15px;
 }
 
-@media (max-width: 550px) {
+.user-info .middle-container>div {
+    text-align: left;
+}
+
+
+@media (max-width: 650px) {
     main>header>h1 {
         font-size: 1.5rem;
     }
 
     main {
         padding: 5px 0px;
+    }
+
+    .user {
+        --image-size: 100px
     }
 
     .users-container {
@@ -208,37 +222,24 @@ main form #load-users:active {
         grid-template-columns: repeat(auto-fit, 70vw);
     }
 
-    .user-info span {
-        font-size: 0.8rem;
-    }
-
-    .user-info header {
-        & .name {
-            font-size: 1.5rem;
-        }
-
-        & .country {
-            font-size: 1.2rem;
-        }
+    .user .user-info {
+        --font-big: 1.5rem;
+        --font-medium: 1.2rem;
+        --font-small: 0.8rem;
     }
 }
 
-@media (max-width: 400px) {
+
+@media (max-width: 500px) {
     .users-container {
         grid-template-columns: repeat(auto-fit, 1fr);
     }
 
-    .user-info span {
-        font-size: 0.6rem;
+    .user-info .middle-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0px;
     }
 
-    .user-info header {
-        & .name {
-            font-size: 1.3rem;
-        }
-
-        & .country {
-            font-size: 0.9rem;
-        }
-    }
 }
