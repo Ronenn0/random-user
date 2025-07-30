@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Users</title>
+    <link rel="icon" href="./icons/page-icon.ico?v=2" type="image/x-ico">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,100 +15,18 @@
             <h1>Random User Cards</h1>
         </header>
         <form>
-            <input type="number" id="users-amount" aria-label="Users Amount" placeholder="Amount">
-            <input type="button" id="load-users" value="Load Users" aria-label="Load Users button">
+            <input type="number" id="users-amount" aria-label="Users Amount" placeholder="Amount" min="1" max="5000">
+
+            <input type="submit" id="load-users" value="Load Users" aria-label="Load Users button">
         </form>
+        <h3 class="result-sentence"></h3>
         <div class="users-container">
-            <div class="user">
-                <div class="color"></div>
-                <div class="user-image-container">
-                    <img src="proffesional-image.png" class="user-image" alt="User Image">
-                </div>
-                <div class="user-info">
-                    <header>
-                        <span class="name" aria-label="Full name">Ronen Azam</span>
-                        <span class="country" aria-label="Country">Israel</span>
-                    </header>
 
-                    <div class="age-gender-container">
-                        <div>
-                            <span class="label">Age:</span>
-                            <span class="age" aria-label="Age">23</span>
-                            <span class="label">years old</span>
-                        </div>
-                        <div>
-                            <span class="label">Gender:</span>
-                            <span class="gender" aria-label="Gender">Male</span>
-                        </div>
-                    </div>
+        </div>
 
-                    <footer>
-                        <span class="label">Email:</span>
-                        <span class="email" aria-label="Email">john.doe@example.com</span>
-                    </footer>
-                </div>
-            </div>
-            <div class="user">
-                <div class="color"></div>
-                <div class="user-image-container">
-                    <img src="proffesional-image.png" class="user-image" alt="User Image">
-                </div>
-                <div class="user-info">
-                    <header>
-                        <span class="name" aria-label="Full name">Ronen Azam</span>
-                        <span class="country" aria-label="Country">Israel</span>
-                    </header>
-
-                    <div class="age-gender-container">
-                        <div>
-                            <span class="label">Age:</span>
-                            <span class="age" aria-label="Age">23</span>
-                            <span class="label">years old</span>
-                        </div>
-                        <div>
-                            <span class="label">Gender:</span>
-                            <span class="gender" aria-label="Gender">Male</span>
-                        </div>
-                    </div>
-
-                    <footer>
-                        <span class="label">Email:</span>
-                        <span class="email" aria-label="Email">john.doe@example.com</span>
-                    </footer>
-                </div>
-            </div>
-            <div class="user">
-                <div class="color"></div>
-                <div class="user-image-container">
-                    <img src="proffesional-image.png" class="user-image" alt="User Image">
-                </div>
-                <div class="user-info">
-                    <header>
-                        <span class="name" aria-label="Full name">Ronen Azam</span>
-                        <span class="country" aria-label="Country">Israel</span>
-                    </header>
-
-                    <div class="age-gender-container">
-                        <div>
-                            <span class="label">Age:</span>
-                            <span class="age" aria-label="Age">23</span>
-                            <span class="label">years old</span>
-                        </div>
-                        <div>
-                            <span class="label">Gender:</span>
-                            <span class="gender" aria-label="Gender">Male</span>
-                        </div>
-                    </div>
-
-                    <footer>
-                        <span class="label">Email:</span>
-                        <span class="email" aria-label="Email">john.doe@example.com</span>
-                    </footer>
-                </div>
-            </div>
     </main>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>
