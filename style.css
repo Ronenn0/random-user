@@ -2,6 +2,10 @@
     --gradient-color: linear-gradient(to right, #1f4037, #44aa7b);
     --primary-color-1: #12836c;
     --primary-color-2: #0a4d3f;
+
+    --main-background: #fbfbfb;
+    --user-background: #f5f5f5;
+    --load-user-color: white;
 }
 
 * {
@@ -17,6 +21,16 @@ html {
     background: var(--gradient-color);
 }
 
+html.dark-mode {
+    --gradient-color: linear-gradient(to right, #2b6d5b, #25553f);
+    --primary-color-1: #18c09e;
+    --primary-color-2: #27b496;
+
+    --main-background: #1b1b1b;
+    --user-background: #131313;
+    --load-user-color: rgb(221, 221, 221);
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -25,7 +39,7 @@ body {
 }
 
 main {
-    background-color: #fbfbfb;
+    background-color: var(--main-background);
     padding: 20px;
     width: 80vw;
     display: flex;
@@ -50,6 +64,7 @@ main form {
 }
 
 main form #users-amount {
+    background-color: var(--main-background);
     padding: 8px 15px;
     width: 120px;
     border-radius: 10px;
@@ -72,7 +87,7 @@ main form #load-users {
     border-radius: 20px;
     background: var(--gradient-color);
     border: none;
-    color: white;
+    color: var(--load-user-color);
     cursor: pointer;
     transition: transform 0.15s;
 
@@ -90,7 +105,7 @@ main form #load-users:active {
 button.download-as-json {
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 57px;
     background: none;
     border: none;
     cursor: pointer;
@@ -136,7 +151,7 @@ button.download-as-json {
 
 .user {
     --image-size: 150px;
-    background-color: #f5f5f5;
+    background-color: var(--user-background);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -267,11 +282,51 @@ button.download-as-json {
     }
 }
 
+.dark-mode-svgs {
+    position: absolute;
+    right: 10px;
+    top: 45px;
+}
+
+.dark-mode-svgs svg {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: scale 0.15s, background-color 0.15s;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+
+    &.hidden {
+        display: none;
+    }
+
+    &:hover {
+        scale: 1.1;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+        scale: 0.8;
+    }
+}
+
+.moon {
+    stroke: none;
+    fill: rgb(75, 74, 74);
+}
+
+.sun {
+    stroke: rgb(209, 209, 12);
+}
+
+
+
 @media (max-width: 500px) {
-    button.download-as-json {
+    /* button.download-as-json {
         left: 3px;
         top: 55px;
-    }
+    } */
 
     .users-container {
         grid-template-columns: repeat(auto-fit, 1fr);

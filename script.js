@@ -65,6 +65,7 @@ function handleEventListeners() {
         URL.revokeObjectURL(url);
     }
 
+    //click to download as JSON
     const downloadButton = document.querySelector('.download-as-json');
     downloadButton.addEventListener('click', () => {
 
@@ -73,6 +74,21 @@ function handleEventListeners() {
         if (!confirm('Are you sure you want to download the users list?')) return;
 
         downloadAsJson();
+    });
+
+
+    //Dark-mode toggling
+    const moon = document.querySelector('.moon');
+    const sun = document.querySelector('.sun');
+    moon.addEventListener('click', () => {
+        document.documentElement.className = 'dark-mode';
+        moon.classList.add('hidden');
+        sun.classList.remove('hidden');
+    });
+    sun.addEventListener('click', () => {
+        document.documentElement.className = '';
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
     });
 }
 
