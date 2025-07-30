@@ -14,7 +14,7 @@ export class User {
     phoneNumber;
 
     constructor(userDetails) {
-        this.id = userDetails.id || 'Not found';
+        this.id = userDetails.id;
         this.firstName = userDetails.firstName;
         this.lastName = userDetails.lastName;
         this.country = userDetails.country;
@@ -82,7 +82,7 @@ export class User {
                     </div>
                     <div>
                         <span class="label">Email:</span>
-                        <span class="email" aria-label="Email">${this.email}</span>
+                        <a href="mailto:${this.email}"><span class="email" aria-label="Email">${this.email}</span></a>
                     </div>
 
                     
@@ -102,7 +102,7 @@ export class User {
         users.length = 0; // empty users
         usersResult.forEach(user => {
             users.push(new User({
-                id: user.id.value,
+                id: user.id?.value || 'Not found',
                 firstName: user.name.first,
                 lastName: user.name.last,
                 country: user.location.country,

@@ -49,4 +49,30 @@ function handleEventListeners() {
         resultSentence.textContent = `Loaded ${usersAmount} User${s}`;
         loadingUsers = false;
     };
+
+    /**
+     * Downloads the users list as a JSON file
+     */
+    function downloadAsJson() {
+        const blob = new Blob([JSON.stringify(users, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'random-users.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    const downloadButton = document.querySelector('.download-as-json');
+    downloadButton.addEventListener('click', () => {
+
+        if (users.length === 0) return alert("No users to download!");
+
+        if (!confirm('Are you sure you want to download the users list?')) return;
+
+        downloadAsJson();
+    });
 }
+
