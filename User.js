@@ -142,4 +142,5 @@ export class User {
         }
         usersContainer.insertAdjacentHTML('beforeend', html); //apend instead of overwrite
     }
+
 }

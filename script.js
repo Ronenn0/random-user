@@ -3,12 +3,16 @@ import { User } from './User.js';
 export let users = [];
 
 const form = document.querySelector('main form');
+const usersContainer = document.querySelector('.users-container');
+
 
 let infinitLoading = true;
 
 
 handleEventListeners();
-form.requestSubmit();
+// form.requestSubmit();
+loadInfinit();
+
 
 /**
  * Handles all required event listeners
@@ -66,6 +70,8 @@ function handleEventListeners() {
         }
         const usersAmount = usersAmountInput.value;
         loadingUsers = true;
+
+        usersContainer.innerHTML = getSpinnerHTML();
 
         const s = usersAmount > 1 ? 's' : '';
         resultSentence.textContent = `Loading ${usersAmount} User${s}...`;
@@ -172,23 +178,49 @@ function handleEventListeners() {
         main.className = 'man';
         infinitLoading = false;
         users.length = 0;
+        usersAmountInput.value = 5;
         form.requestSubmit();
     });
 }
+
+
+/**
+ * 
+ * Loads infinity Random Users, 
+ * when user scrolls down close to bottom -> it loads 10 users.
+ */
 async function loadInfinit() {
     if (!infinitLoading) return;
 
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 1000) {
         const usersAmountToAdd = 10;
+
+        //Add spinner
+        usersContainer.innerHTML += getSpinnerHTML();
+
+        //Add Random users to the users array.
         await User.getRandomUsers(usersAmountToAdd, null, false);
+
+        //Remove spinner if it exists
+        if ([...usersContainer.children][[...usersContainer.children].length - 1].id == 'spinner') {
+            usersContainer.removeChild(document.getElementById('spinner'));
+        }
+
+        //Display new users.
         User.displayLastUsersOnContainer(usersAmountToAdd);
+
     }
 
     setTimeout(async () => {
-        await loadInfinit()
-    }, 100);
+        await loadInfinit();
+    }, 1000);
 }
 
-loadInfinit();
-
+/**
+ * 
+ * @returns a spinner's html
+ */
+function getSpinnerHTML() {
+    return '<div id="spinner" class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></div>';
+}
