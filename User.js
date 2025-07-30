@@ -127,4 +127,19 @@ export class User {
         const html = users.reduce((HTML, user) => HTML + user.getHTML(), '');
         usersContainer.innerHTML = html;
     }
+
+    /**
+     * 
+     * @param {*} amount -> amount of added users
+     * This adds only the new users' htmls to the container,
+     * instead of recreating all the users' html.
+     */
+    static displayLastUsersOnContainer(amount) {
+        const usersContainer = document.querySelector('.users-container');
+        let html = '';
+        for (let i = users.length - amount; i < users.length; i++) {
+            html += users[i].getHTML();
+        }
+        usersContainer.insertAdjacentHTML('beforeend', html); //apend instead of overwrite
+    }
 }

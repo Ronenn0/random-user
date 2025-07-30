@@ -180,8 +180,9 @@ async function loadInfinit() {
 
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (scrollTop + clientHeight >= scrollHeight - 1000) {
-        await User.getRandomUsers(10, null, false);
-        User.displayUsersOnContainer();
+        const usersAmountToAdd = 10;
+        await User.getRandomUsers(usersAmountToAdd, null, false);
+        User.displayLastUsersOnContainer(usersAmountToAdd);
     }
 
     setTimeout(async () => {
